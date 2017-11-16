@@ -14,6 +14,8 @@
         <li class="dropdown">
 
 
+                <li><a href="nguoidung.php"><i class="fa fa-user fa-fw"></i>Quản lý người dùng</a>
+                </li>
                 <li><a href="#"><i class="fa fa-user fa-fw"></i>Thông tin người dùng</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>

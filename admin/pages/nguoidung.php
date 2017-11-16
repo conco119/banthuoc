@@ -8,9 +8,9 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
-      $loaithuoc = $exp->fetch_all("select * from loaithuoc");
+      $nguoidung = $exp->fetch_all("select * from nguoidung");
      ?>
-    <link rel="stylesheet" href="../dist/css/loaithuoc.css">
+    <link rel="stylesheet" href="../dist/css/nguoidung.css">
     <link href="../../library/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 </head>
 <body>
@@ -28,7 +28,7 @@ session_start();
               <div class="panel panel-green">
                   <div class="panel-heading">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Thêm loại thuốc</h4>
+                    <h4 class="modal-title">Thêm người dùng</h4>
                   </div>
               </div>
             </div>
@@ -45,7 +45,7 @@ session_start();
                                       <div class="col-md-6 col-md-offset-2">
                                         <br>
                                           <div class="form-group">
-                                            <label  class="col-sm-4 control-label">Tên loại thuôc</label>
+                                            <label  class="col-sm-4 control-label">Tên nhân viên</label>
                                             <div class="col-sm-8">
                                               <input name='ten' class="form-control"  placeholder="Tên thuốc" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập tên loại thuốc')"

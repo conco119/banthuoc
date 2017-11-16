@@ -22,7 +22,7 @@ session_start();
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/nhacungcap/them.php' class="form-horizontal" id='themthuocform'  >
+          <form method="post" action='../api/themnhacungcap.php' class="form-horizontal" id='themthuocform'  >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
@@ -104,7 +104,7 @@ session_start();
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/nhacungcap/sua.php' class="form-horizontal"   >
+          <form method="post" action='../api/suanhacungcap.php' class="form-horizontal"   >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
@@ -127,9 +127,10 @@ session_start();
                                 <div class="col-md-5">
                                   <br>
                                     <div class="form-group">
+                                      <input id='sua_id' type="hidden" name="id" value="">
                                       <label  class="col-sm-4 control-label">Tên nhà cung cấp</label>
                                       <div class="col-sm-8">
-                                        <input name='ten_ncc' class="form-control"  placeholder="Tên nhà cung cấp" required=""
+                                        <input id='sua_ten_ncc' name='ten_ncc' class="form-control"  placeholder="Tên nhà cung cấp" required=""
                                         oninvalid="this.setCustomValidity('Chưa nhập tên nhà cung cấp')"
                                         oninput="setCustomValidity('')"
                                         >
@@ -138,19 +139,19 @@ session_start();
                                     <div class="form-group">
                                       <label  class="col-sm-4 control-label">Số điện thoại</label>
                                       <div class="col-sm-8">
-                                        <input name='sdt' class="form-control"  placeholder="Số điện thoại">
+                                        <input id='sua_sdt' name='sdt' class="form-control"  placeholder="Số điện thoại">
                                       </div>
                                     </div>
                                     <div class="form-group">
                                       <label  class="col-sm-4 control-label">Email</label>
                                       <div class="col-sm-8">
-                                        <input name='email' class="form-control"  placeholder="Email">
+                                        <input id='sua_email' name='email' class="form-control"  placeholder="Email">
                                       </div>
                                     </div>
                                     <div class="form-group">
                                       <label  class="col-sm-4 control-label">Địa chỉ</label>
                                       <div class="col-sm-8">
-                                        <input name='dia_chi' class="form-control"  placeholder="Địa chỉ">
+                                        <input id='sua_dia_chi' name='dia_chi' class="form-control"  placeholder="Địa chỉ">
                                       </div>
                                     </div>
                                 </div>
@@ -160,7 +161,7 @@ session_start();
                                     <div class="form-group">
                                       <label  class="col-sm-4 control-label">Ghi chú</label>
                                       <div class="col-sm-8">
-                                      <textarea class='form-control' name="ghi_chu" rows="8" cols="80"></textarea>
+                                      <textarea id='sua_ghi_chu' class='form-control' name="ghi_chu" rows="8" cols="80"></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -245,7 +246,7 @@ session_start();
              <?php } ?>
               </div>
               <div class="col-md-6 right">
-                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i>  Thêm loại thuốc</button>
+                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i>  Thêm nhà cung cấp</button>
                 <button class='btn btn-default' type="button" name="button"><i class='	glyphicon glyphicon-export'></i> Xuất file</button>
 
 
@@ -273,7 +274,7 @@ session_start();
                                  <td><?php echo $value['sdt']; ?></td>
                                  <td><?php echo $value['email']; ?></td>
                                  <td><?php echo $value['dia_chi']; ?></td>
-                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/nhacungcap/xoa.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
+                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/xoanhacungcap.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
                                  <td class="center">
                                    <i  class="fa fa-pencil fa-fw"></i>
                                    <a class='edit' data-toggle="modal" data-target="#suanhacungcap"  href="#"
@@ -282,6 +283,7 @@ session_start();
                                       data-sdt="<?php echo $value['sdt']; ?>"
                                       data-email="<?php echo $value['email']; ?>"
                                       data-dia_chi="<?php echo $value['dia_chi']; ?>"
+                                      data-ghi_chu="<?php echo $value['ghi_chu']; ?>"
                                     >Sửa</a>
                                  </td>
                              </tr>
@@ -309,12 +311,12 @@ session_start();
                     "lengthMenu": "Hiển thị _MENU_ mỗi trang",
                     "zeroRecords": "Không có dữ liệu ",
                     "info": "Trang  _PAGE_ trên _PAGES_",
-                    "infoEmpty": "No records available",
+                    "infoEmpty": "Không có dữ liệu phù hợp",
                     "infoFiltered": "(lọc từ _MAX_ bản ghi)",
                     "search": "Tìm kiếm",
                     "paginate": {
-                       "first":      "Frist",
-                       "last":       "Last",
+                       "first":      "Đầu",
+                       "last":       "Cuối",
                        "next":       "Trước",
                        "previous":   "Sau"
                    },
@@ -334,8 +336,12 @@ session_start();
 
           $(document).ready(function() {
             $('.edit').click(function() {
-              $('#suaten').val($(this).data('ten'))
               $('#sua_id').val($(this).data('id'))
+              $('#sua_ten_ncc').val($(this).data('ten'))
+              $('#sua_sdt').val($(this).data('sdt'))
+              $('#sua_email').val($(this).data('email'))
+              $('#sua_dia_chi').val($(this).data('dia_chi'))
+              $('#sua_ghi_chu').val($(this).data('ghi_chu'))
             })
           })
 

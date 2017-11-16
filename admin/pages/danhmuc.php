@@ -390,15 +390,15 @@ session_start();
         $('#dataTables-example').DataTable({
                 responsive: true,
                 "language": {
-                    "lengthMenu": "Hiển thị _MENU_ bản ghi mỗi trang",
+                    "lengthMenu": "Hiển thị _MENU_ mỗi trang",
                     "zeroRecords": "Không có dữ liệu ",
                     "info": "Trang  _PAGE_ trên _PAGES_",
-                    "infoEmpty": "No records available",
+                    "infoEmpty": "Không có dữ liệu phù hợp",
                     "infoFiltered": "(lọc từ _MAX_ bản ghi)",
                     "search": "Tìm kiếm",
                     "paginate": {
-                       "first":      "Frist",
-                       "last":       "Last",
+                       "first":      "Đầu",
+                       "last":       "Cuối",
                        "next":       "Trước",
                        "previous":   "Sau"
                    },
