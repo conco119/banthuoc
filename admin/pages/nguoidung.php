@@ -17,12 +17,12 @@ session_start();
 
     <div id="wrapper">
 
-      <!-- Modal them loai thuoc -->
+      <!-- Modal them nhan vien -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/themloaithuoc.php' class="form-horizontal" id='themthuocform'  >
+          <form method="post" action='../api/themnguoidung.php' class="form-horizontal"  >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
@@ -42,17 +42,78 @@ session_start();
 
 
                                     <div class="row">
-                                      <div class="col-md-6 col-md-offset-2">
+                                      <div class="col-md-6">
                                         <br>
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Tên nhân viên</label>
                                             <div class="col-sm-8">
-                                              <input name='ten' class="form-control"  placeholder="Tên thuốc" required=""
-                                              oninvalid="this.setCustomValidity('Chưa nhập tên loại thuốc')"
+                                              <input name='ten_nv' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập tên nhân viên ')"
                                               oninput="setCustomValidity('')"
                                               >
                                             </div>
                                           </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Ngày sinh</label>
+                                            <div class="col-sm-8">
+                                              <input name='ngay_sinh' type='text' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập ngày sinh ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Địa chỉ</label>
+                                            <div class="col-sm-8">
+                                              <input name='dia_chi' type='text' class="form-control"  placeholder="Địa chỉ" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập địa chỉ ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Số điện thoại</label>
+                                            <div class="col-sm-8">
+                                              <input name='sdt' type='number' class="form-control"  placeholder="Số điện thoại" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập số điện thoại ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                      </div> 
+
+                                      <div class="col-md-6">
+                                        <br>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Số chứng minh nhân dân</label>
+                                            <div class="col-sm-8">
+                                              <input name='cmnd' class="form-control"  placeholder="Số chứng minh nhân dân" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập số chứng minh nhân dân')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                           <div class="form-group">
+                                            
+                                               <label class='col-sm-4 control-label'>Chức vụ</label>
+                                               <div class='col-sm-8'>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios1" value="1" checked>Quản lý
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios2" value="2">Dược sĩ
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios3" value="3">Nhân viên bán hàng
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                       </div>
 
                                     </div>
@@ -72,12 +133,12 @@ session_start();
         </div>
       </div>
 
-      <!-- Modal sua loai thuoc -->
-      <div class="modal fade" id="sualoaithuoc" role="dialog">
+      <!-- Modal sua nhan vien -->
+      <div class="modal fade" id='suanguoidung' role="dialog">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/sualoaithuoc.php' class="form-horizontal"   >
+          <form method="post" action='../api/suanhanvien.php' class="form-horizontal"   >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
@@ -96,19 +157,80 @@ session_start();
                               <!-- Tab panes -->
 
 
+                                    
                                     <div class="row">
-                                      <div class="col-md-6 col-md-offset-2">
+                                      <div class="col-md-6">
                                         <br>
                                           <div class="form-group">
-                                            <label  class="col-sm-4 control-label">Tên loại thuôc</label>
+                                            <label  class="col-sm-4 control-label">Tên nhân viên</label>
                                             <div class="col-sm-8">
-                                              <input type="hidden" id="sua_id" name="id" value="">
-                                              <input name='ten' class="form-control"  placeholder="Tên thuốc" required=""
-                                              oninvalid="this.setCustomValidity('Chưa nhập tên loại thuốc')"
-                                              oninput="setCustomValidity('')" id='suaten'
+                                              <input id='ten_nv' name='ten_nv' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập tên nhân viên ')"
+                                              oninput="setCustomValidity('')"
                                               >
                                             </div>
                                           </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Ngày sinh</label>
+                                            <div class="col-sm-8">
+                                              <input id='ngay_sinh' name='ngay_sinh' type='text' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập ngày sinh ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Địa chỉ</label>
+                                            <div class="col-sm-8">
+                                              <input id='dia_chi' name='dia_chi' type='text' class="form-control"  placeholder="Địa chỉ" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập địa chỉ ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Số điện thoại</label>
+                                            <div class="col-sm-8">
+                                              <input id='sdt' name='sdt' type='number' class="form-control"  placeholder="Số điện thoại" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập số điện thoại ')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                      </div> 
+
+                                      <div class="col-md-6">
+                                        <br>
+                                          <div class="form-group">
+                                            <label  class="col-sm-4 control-label">Số chứng minh nhân dân</label>
+                                            <div class="col-sm-8">
+                                              <input id='cmnd' name='cmnd' class="form-control"  placeholder="Số chứng minh nhân dân" required=""
+                                              oninvalid="this.setCustomValidity('Chưa nhập số chứng minh nhân dân')"
+                                              oninput="setCustomValidity('')"
+                                              >
+                                            </div>
+                                          </div>
+                                           <div class="form-group">
+                                            
+                                               <label class='col-sm-4 control-label'>Chức vụ</label>
+                                               <div class='col-sm-8'>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios1" value="1" checked>Quản lý
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios2" value="2">Dược sĩ
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="quyen" id="optionsRadios3" value="3">Nhân viên bán hàng
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                       </div>
 
                                     </div>
@@ -139,7 +261,7 @@ session_start();
           <div class="grey">
             <div class="row header">
               <div class="col-md-6">
-                <h2 class='title'>Danh mục loại thuốc</h2>
+                <h2 class='title'>Danh sách nhân viên</h2>
                 <?php if(isset($_SESSION["status"])) {  ?>
 
                  <?php if($_SESSION['status'] == "success") { ?>
@@ -192,7 +314,7 @@ session_start();
              <?php } ?>
               </div>
               <div class="col-md-6 right">
-                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i>  Thêm loại thuốc</button>
+                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i> Thêm nhân viên</button>
                 <button class='btn btn-default' type="button" name="button"><i class='	glyphicon glyphicon-export'></i> Xuất file</button>
 
 
@@ -203,23 +325,44 @@ session_start();
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                          <thead>
                              <tr align="center">
-                                 <th>Mã loại thuốc</th>
-                                 <td>Tên loại thuốc</td>
+                                 <th>Mã nhân viên</th>
+                                 <td>Tên nhân viên</td>
+                                 <td>Ngày sinh</td>
+                                 <td>Địa chỉ</td>
+                                 <td>Số điện thoại</td>
+                                 <td>Số chứng minh nhân dân</td>
+                                 <td>Chức vụ</td>
                                  <td>Xóa</td>
                                  <td>Sửa</td>
                              </tr>
                          </thead>
                          <tbody id="data">
-                           <?php foreach($loaithuoc as $key => $value): ?>
+                           <?php foreach($nguoidung as $key => $value): ?>
                              <tr class="odd gradeX" align="center">
                                  <td><?php echo $value['id']; ?></td>
-                                 <td><?php echo $value['ten']; ?></td>
-                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/xoaloaithuoc.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
+                                 <td><?php echo $value['ten_nv']; ?></td>
+                                 <td><?php echo $value['ngay_sinh']; ?></td>
+                                 <td><?php echo $value['dia_chi']; ?></td>
+                                 <td><?php echo $value['sdt']; ?></td>
+                                 <td><?php echo $value['cmnd']; ?></td>
+                                 <td>
+                                    <?php
+                                     switch($value['quyen']) {
+                                      case 1: echo "Quản lý";
+                                              break;
+                                      case 2: echo "Dược sĩ";
+                                              break;
+                                      case 3: echo "Nhân viên bán hàng";
+                                              break;
+                                     }
+                                    ?>
+                                 </td>
+                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/suanhanvien.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
                                  <td class="center">
                                    <i  class="fa fa-pencil fa-fw"></i>
-                                   <a class='edit' data-toggle="modal" data-target="#sualoaithuoc"  href="#"
+                                   <a class='edit' data-toggle="modal" data-target="#suanguoidung"  href="#"
                                       data-id=<?php echo $value['id']; ?>
-                                      data-ten="<?php echo $value['ten']; ?>"
+                                      data-ten_nv="<?php echo $value['ten_nv']; ?>"
                                     >Sửa</a>
                                  </td>
                              </tr>
