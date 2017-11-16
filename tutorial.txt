@@ -1,0 +1,3 @@
+update config in /library/VSCPDO.php
+database using file thuoc.sql
+index admin /admin/pages/index.php
