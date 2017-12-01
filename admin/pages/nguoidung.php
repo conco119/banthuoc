@@ -56,7 +56,7 @@ session_start();
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Ngày sinh</label>
                                             <div class="col-sm-8">
-                                              <input name='ngay_sinh' type='text' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              <input id='ngay_sinh' name='ngay_sinh' type='text'   class="form-control"  placeholder="Tên nhân viên" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập ngày sinh ')"
                                               oninput="setCustomValidity('')"
                                               >
@@ -80,7 +80,7 @@ session_start();
                                               >
                                             </div>
                                           </div>
-                                      </div> 
+                                      </div>
 
                                       <div class="col-md-6">
                                         <br>
@@ -94,22 +94,22 @@ session_start();
                                             </div>
                                           </div>
                                            <div class="form-group">
-                                            
+
                                                <label class='col-sm-4 control-label'>Chức vụ</label>
                                                <div class='col-sm-8'>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="quyen" id="optionsRadios1" value="1" checked>Quản lý
+                                                        <input type="radio" name="quyen"  value="1" checked>Quản lý
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="quyen" id="optionsRadios2" value="2">Dược sĩ
+                                                        <input type="radio" name="quyen"  value="2">Dược sĩ
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="quyen" id="optionsRadios3" value="3">Nhân viên bán hàng
+                                                        <input type="radio" name="quyen"  value="3">Nhân viên bán hàng
                                                     </label>
                                                 </div>
                                             </div>
@@ -138,13 +138,13 @@ session_start();
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/suanhanvien.php' class="form-horizontal"   >
+          <form method="post" action='../api/suanguoidung.php' class="form-horizontal"   >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
                   <div class="panel-heading">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Sửa loại thuốc</h4>
+                    <h4 class="modal-title">Sửa thông tin người dùng</h4>
                   </div>
               </div>
             </div>
@@ -157,14 +157,15 @@ session_start();
                               <!-- Tab panes -->
 
 
-                                    
+
                                     <div class="row">
                                       <div class="col-md-6">
                                         <br>
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Tên nhân viên</label>
                                             <div class="col-sm-8">
-                                              <input id='ten_nv' name='ten_nv' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              <input id='sua_id' type="hidden" name="id" value="">
+                                              <input id='sua_ten_nv' name='ten_nv' class="form-control"  placeholder="Tên nhân viên" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập tên nhân viên ')"
                                               oninput="setCustomValidity('')"
                                               >
@@ -173,7 +174,7 @@ session_start();
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Ngày sinh</label>
                                             <div class="col-sm-8">
-                                              <input id='ngay_sinh' name='ngay_sinh' type='text' class="form-control"  placeholder="Tên nhân viên" required=""
+                                              <input id='sua_ngay_sinh' name='ngay_sinh' type='text' class="form-control"  placeholder="Tên nhân viên" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập ngày sinh ')"
                                               oninput="setCustomValidity('')"
                                               >
@@ -182,7 +183,7 @@ session_start();
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Địa chỉ</label>
                                             <div class="col-sm-8">
-                                              <input id='dia_chi' name='dia_chi' type='text' class="form-control"  placeholder="Địa chỉ" required=""
+                                              <input id='sua_dia_chi' name='dia_chi' type='text' class="form-control"  placeholder="Địa chỉ" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập địa chỉ ')"
                                               oninput="setCustomValidity('')"
                                               >
@@ -191,32 +192,32 @@ session_start();
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Số điện thoại</label>
                                             <div class="col-sm-8">
-                                              <input id='sdt' name='sdt' type='number' class="form-control"  placeholder="Số điện thoại" required=""
+                                              <input id='sua_sdt' name='sdt' type='number' class="form-control"  placeholder="Số điện thoại" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập số điện thoại ')"
                                               oninput="setCustomValidity('')"
                                               >
                                             </div>
                                           </div>
-                                      </div> 
+                                      </div>
 
                                       <div class="col-md-6">
                                         <br>
                                           <div class="form-group">
                                             <label  class="col-sm-4 control-label">Số chứng minh nhân dân</label>
                                             <div class="col-sm-8">
-                                              <input id='cmnd' name='cmnd' class="form-control"  placeholder="Số chứng minh nhân dân" required=""
+                                              <input id='sua_cmnd' name='cmnd' class="form-control"  placeholder="Số chứng minh nhân dân" required=""
                                               oninvalid="this.setCustomValidity('Chưa nhập số chứng minh nhân dân')"
                                               oninput="setCustomValidity('')"
                                               >
                                             </div>
                                           </div>
                                            <div class="form-group">
-                                            
+
                                                <label class='col-sm-4 control-label'>Chức vụ</label>
-                                               <div class='col-sm-8'>
+                                               <div id='quyencheck' class='col-sm-8 '>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="quyen" id="optionsRadios1" value="1" checked>Quản lý
+                                                        <input type="radio" name="quyen" id="optionsRadios1" value="1" >Quản lý
                                                     </label>
                                                 </div>
                                                 <div class="radio">
@@ -261,7 +262,7 @@ session_start();
           <div class="grey">
             <div class="row header">
               <div class="col-md-6">
-                <h2 class='title'>Danh sách nhân viên</h2>
+                <h2 class='title'>Danh sách người dùng</h2>
                 <?php if(isset($_SESSION["status"])) {  ?>
 
                  <?php if($_SESSION['status'] == "success") { ?>
@@ -314,7 +315,7 @@ session_start();
              <?php } ?>
               </div>
               <div class="col-md-6 right">
-                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i> Thêm nhân viên</button>
+                <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i> Thêm người dùng</button>
                 <button class='btn btn-default' type="button" name="button"><i class='	glyphicon glyphicon-export'></i> Xuất file</button>
 
 
@@ -363,6 +364,11 @@ session_start();
                                    <a class='edit' data-toggle="modal" data-target="#suanguoidung"  href="#"
                                       data-id=<?php echo $value['id']; ?>
                                       data-ten_nv="<?php echo $value['ten_nv']; ?>"
+                                      data-ngay_sinh=<?php echo $value['ngay_sinh']; ?>
+                                      data-dia_chi="<?php echo $value['dia_chi']; ?>"
+                                      data-sdt=<?php echo $value['sdt']; ?>
+                                      data-cmnd=<?php echo $value['cmnd']; ?>
+                                      data-quyen=<?php echo $value['quyen']; ?>
                                     >Sửa</a>
                                  </td>
                              </tr>
@@ -418,11 +424,39 @@ session_start();
               $('#suaten').val($(this).data('ten'))
               $('#sua_id').val($(this).data('id'))
             })
+
+            $( "#ngay_sinh" ).datepicker({dateFormat: "yy-mm-dd"});
+            $( "#sua_ngay_sinh" ).datepicker({dateFormat: "yy-mm-dd"});
           })
 
+          $(document).ready(function() {
+            $('.edit').click(function() {
+              $('#sua_id').val($(this).data('id'))
+              $('#sua_ten_nv').val($(this).data('ten_nv'))
+              $('#sua_ngay_sinh').val($(this).data('ngay_sinh'))
+              $('#sua_dia_chi').val($(this).data('dia_chi'))
+              $('#sua_sdt').val($(this).data('sdt'))
+              $('#sua_cmnd').val($(this).data('cmnd'))
+              let quyen = $(this).data('quyen')
 
+              switch(quyen) {
+                case 1:
+                  $('#optionsRadios1').attr('checked',"")
+                  break
+                case 2:
+                  $('#optionsRadios2').attr('checked',"")
+                  break
+                case 3:
+                  $('#optionsRadios3').attr('checked',"")
+                  break
+              }
+            })
+          })
 
-
+          $('#suanguoidung').on('hidden.bs.modal', function () {
+              let selected = $(`#quyencheck input[checked='checked'`)
+              $(selected).removeAttr("checked");
+          })
 
     </script>
 </body>

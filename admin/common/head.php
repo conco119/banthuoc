@@ -32,6 +32,9 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- date picker -->
+    <link rel="stylesheet" href="../js/jquery-ui.css">
+    <script src='../js/jquery-ui.js'></script>
     <!-- <link rel="stylesheet" type="text/css" href="../../library/datatables/datatables.min.css"/>
     <script type="text/javascript" src="../../library/datatables/datatables.min.js"></script> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
