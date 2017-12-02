@@ -69,7 +69,7 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Đối tác<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="danhmuc.php">Khách hàng</a>
+                            <a href="khachhang.php">Khách hàng</a>
                         </li>
                         <li>
                             <a href="nhacungcap.php">Nhà cung cấp</a>
@@ -87,7 +87,7 @@
                             <a href="phieunhaphang.php">Phiếu nhập hàng</a>
                         </li>
                         <li>
-                            <a href="nhacungcap.php">Hóa đơn</a>
+                            <a href="hoadon.php">Hóa đơn</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

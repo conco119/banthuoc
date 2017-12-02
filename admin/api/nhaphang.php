@@ -33,6 +33,12 @@ if(isset($_POST['submit'])) {
         $nhap['don_gia'] = $value[3];
         $nhap['thanh_tien'] = $value[2]*$value[3];
         $exp->insert('ctphieunhap', $nhap);
+        // chọn số lượng thuốc trong kho
+        $thuoc = $exp->fetch_one(" select * from thuoc where id={$nhap["ma_thuoc"]}");
+        $soluong = $thuoc['ton_kho'];
+        // cộng thuốc từ phiếu nhập với số lượng ở kho
+        $update['ton_kho'] = $soluong + $nhap['so_luong'];
+        $exp->update('thuoc', $update,"id={$nhap["ma_thuoc"]}");
       }
     }
     $_SESSION["status"] = "success";

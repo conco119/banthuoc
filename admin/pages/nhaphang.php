@@ -60,7 +60,7 @@ session_start();
                                    <td>
                                      <button type="button" class=' select btn btn-success btn-sm' name="button"
                                         data-id=<?php echo $value['id']; ?>
-                                        data-ten_thuoc=<?php echo $value['ten_thuoc']; ?>
+                                        data-ten_thuoc="<?php echo $value['ten_thuoc']; ?>"
                                         data-gia_von=<?php echo $value['gia_von']; ?>
                                      >
                                        Chọn</button>
@@ -290,9 +290,9 @@ session_start();
           })
 
           // thêm mặt hàng vào hóa đơn
-          $(document).ready(function() {
 
-            $('.select').click(function() {
+
+            $('tbody').delegate('.select','click',function() {
               let id=$(this).data('id')
               let ten_thuoc=$(this).data('ten_thuoc')
               let gia_von=$(this).data('gia_von')
@@ -333,9 +333,11 @@ session_start();
                 $('#mathang').append(row)
               }
 
-              disp( $( ".trung" ).toArray().reverse() );
-            })
-          })
+              disp( $( ".trung" ).toArray() );
+            });
+
+
+
 
 
 
