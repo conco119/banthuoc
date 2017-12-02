@@ -78,6 +78,21 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Giao dịch<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="nhaphang.php">Nhập hàng</a>
+                        </li>
+                        <li>
+                            <a href="phieunhaphang.php">Phiếu nhập hàng</a>
+                        </li>
+                        <li>
+                            <a href="nhacungcap.php">Hóa đơn</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
                 </li>
                 <li>

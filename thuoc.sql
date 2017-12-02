@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 16, 2017 lúc 05:36 AM
+-- Thời gian đã tạo: Th12 02, 2017 lúc 11:32 AM
 -- Phiên bản máy phục vụ: 10.1.26-MariaDB
 -- Phiên bản PHP: 7.1.9
 
@@ -42,12 +42,31 @@ CREATE TABLE `cthoadon` (
 --
 
 CREATE TABLE `ctphieunhap` (
+  `id` int(11) NOT NULL,
   `ma_pn` int(11) NOT NULL,
   `ma_thuoc` int(11) NOT NULL,
+  `ten_thuoc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `so_luong` int(11) NOT NULL,
-  `don_gia` int(11) NOT NULL,
-  `giam_gia` int(11) NOT NULL
+  `don_gia` float NOT NULL,
+  `thanh_tien` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `ctphieunhap`
+--
+
+INSERT INTO `ctphieunhap` (`id`, `ma_pn`, `ma_thuoc`, `ten_thuoc`, `so_luong`, `don_gia`, `thanh_tien`) VALUES
+(2, 9, 75, '232', 2, 312, 624),
+(3, 9, 76, 'Commonwealth', 3, 12, 36),
+(4, 9, 77, 'P/H', 4, 122, 488),
+(5, 18, 75, '232', 3, 312, 936),
+(6, 18, 76, 'Commonwealth', 2, 12, 24),
+(7, 18, 77, 'P/H', 1, 122, 122),
+(8, 19, 75, '232', 1, 312, 312),
+(9, 19, 76, 'Commonwealth', 1, 12, 12),
+(10, 19, 77, 'P/H', 1, 122, 122),
+(11, 19, 78, 'Partamol', 1, 2123, 2123),
+(12, 19, 79, 'beo', 1, 222, 222);
 
 -- --------------------------------------------------------
 
@@ -102,6 +121,14 @@ CREATE TABLE `nguoidung` (
   `quyen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `nguoidung`
+--
+
+INSERT INTO `nguoidung` (`id`, `ten_nv`, `ngay_sinh`, `dia_chi`, `chuc_vu`, `sdt`, `cmnd`, `quyen`) VALUES
+(1, 'Nguyen Hai Duy', '2017-11-23', 'Cau dienn', 0, '232142312', '32132312', 1),
+(2, 'Tu', '2017-11-09', 'ha noi', 0, '2132', '2331', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -122,7 +149,8 @@ CREATE TABLE `nhacungcap` (
 --
 
 INSERT INTO `nhacungcap` (`id`, `ten_ncc`, `sdt`, `email`, `dia_chi`, `ghi_chu`) VALUES
-(1, 'Cầu Diễn Hội', '23542123', 'caudien@gmail.com', 'Cau Dien Ha Noi', 'Nope');
+(1, 'Cầu Diễn Hội', '23542123', 'caudien@gmail.com', 'Cau Dien Ha Noi', 'Nope'),
+(2, 'Thường tín', '111', 'thuongtin@das', 'weq', '111');
 
 -- --------------------------------------------------------
 
@@ -135,11 +163,20 @@ CREATE TABLE `phieu_nhap` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ma_ncc` int(11) NOT NULL,
   `ma_nv` int(11) NOT NULL,
-  `so_luong` int(11) NOT NULL,
-  `so_mat_hang` int(11) NOT NULL,
   `tong_tien` float NOT NULL,
-  `giam_gia` float NOT NULL
+  `ngay_nhap` date NOT NULL,
+  `ghi_chu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `phieu_nhap`
+--
+
+INSERT INTO `phieu_nhap` (`id`, `time`, `ma_ncc`, `ma_nv`, `tong_tien`, `ngay_nhap`, `ghi_chu`) VALUES
+(7, '2017-12-02 09:08:38', 1, 1, 1148, '2017-12-08', 'wq'),
+(9, '2017-12-02 09:10:13', 1, 1, 1148, '2017-12-08', 'wq'),
+(18, '2017-12-02 09:25:48', 1, 1, 1082, '2017-12-08', ''),
+(19, '2017-12-02 09:27:30', 1, 1, 2791, '2017-12-08', 'khong co gi');
 
 -- --------------------------------------------------------
 
@@ -221,6 +258,7 @@ ALTER TABLE `cthoadon`
 -- Chỉ mục cho bảng `ctphieunhap`
 --
 ALTER TABLE `ctphieunhap`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `ctphieunhap_fk1` (`ma_pn`),
   ADD KEY `ctphieunhap_fk2` (`ma_thuoc`);
 
@@ -283,6 +321,12 @@ ALTER TABLE `trang_thai`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `ctphieunhap`
+--
+ALTER TABLE `ctphieunhap`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -298,7 +342,7 @@ ALTER TABLE `loaithuoc`
 -- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `nhacungcap`
@@ -310,7 +354,7 @@ ALTER TABLE `nhacungcap`
 -- AUTO_INCREMENT cho bảng `phieu_nhap`
 --
 ALTER TABLE `phieu_nhap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `thuoc`
@@ -339,8 +383,7 @@ ALTER TABLE `cthoadon`
 -- Các ràng buộc cho bảng `ctphieunhap`
 --
 ALTER TABLE `ctphieunhap`
-  ADD CONSTRAINT `ctphieunhap_fk1` FOREIGN KEY (`ma_pn`) REFERENCES `phieu_nhap` (`id`),
-  ADD CONSTRAINT `ctphieunhap_fk2` FOREIGN KEY (`ma_thuoc`) REFERENCES `thuoc` (`id`);
+  ADD CONSTRAINT `ctphieunhap_fk1` FOREIGN KEY (`ma_pn`) REFERENCES `phieu_nhap` (`id`);
 
 --
 -- Các ràng buộc cho bảng `hoadon`
