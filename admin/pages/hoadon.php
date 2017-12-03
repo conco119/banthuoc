@@ -71,7 +71,7 @@ session_start();
                                    <td>
                                      <button type="button" class=' select btn btn-success btn-sm' name="button"
                                         data-id=<?php echo $value['id']; ?>
-                                        data-ten_thuoc=<?php echo $value['ten_thuoc']; ?>
+                                        data-ten_thuoc="<?php echo $value['ten_thuoc']; ?>"
                                         data-gia_ban=<?php echo $value['gia_ban']; ?>
                                         data-ton_kho=<?php echo $value['ton_kho']; ?>
                                      >

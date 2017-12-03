@@ -1,3 +1,8 @@
+
+<?php
+  if(!isset($_SESSION['quyen']))
+  header("location:login.php");
+?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,14 +21,17 @@
                 <li>
                     <a href="hoadon.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Bán thuốc</a>
                 </li>
-                <li><a href="nguoidung.php"><i class="fa fa-user fa-fw"></i>Quản lý người dùng</a>
+                <?php if($_SESSION['quyen'] == 1): ?>
+                <li>
+                  <a href="nguoidung.php"><i class="fa fa-user fa-fw"></i>Quản lý người dùng</a>
                 </li>
-                <li><a href="#"><i class="fa fa-user fa-fw"></i>Thông tin người dùng</a>
+                <?php endif ?>
+                <li><a href="info.php"><i class="fa fa-user fa-fw"></i>Thông tin người dùng</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>
-                </li>
+                <!-- <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>
+                </li> -->
                 <li class="divider"></li>
-                <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+                <li><a href="../api/logout.php"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
                 </li>
 
             <!-- /.dropdown-user -->
@@ -52,18 +60,21 @@
                 <li>
                     <a href="#"><i class="fa fa-medkit" aria-hidden="true"></i></i> Thuốc<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                      <?php if($_SESSION['quyen'] != 3): ?>
                         <li>
                             <a href="danhmuc.php">Danh mục</a>
                         </li>
+
                         <li>
                             <a href="loaithuoc.php">Loại thuốc</a>
                         </li>
-                        <li>
+                        <?php endif ?>
+                        <!-- <li>
                             <a href="morris.php">Thiết lập giá</a>
                         </li>
                         <li>
                             <a href="flot.php">Kiểm kho(flot.php)</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -73,15 +84,18 @@
                         <li>
                             <a href="khachhang.php">Khách hàng</a>
                         </li>
+                        <?php if($_SESSION['quyen'] != 3): ?>
                         <li>
                             <a href="nhacungcap.php">Nhà cung cấp</a>
                         </li>
+                      <?php endif ?>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Giao dịch<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                      <?php if($_SESSION['quyen'] != 3): ?>
                         <li>
                             <a href="nhaphang.php">Nhập hàng</a>
                         </li>
@@ -91,17 +105,17 @@
                         <li>
                             <a href="hoadon1.php">Hóa đơn</a>
                         </li>
-
+                      <?php endif ?>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
+                <!-- <li>
                     <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -123,9 +137,8 @@
                             <a href="grid.php">Grid</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -150,12 +163,12 @@
                                     <a href="#">Third Level Item</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-third-level -->
+                            /.nav-third-level
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
+                    /.nav-second-level
+                </li> -->
+                <!-- <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -165,8 +178,8 @@
                             <a href="login.php">Login Page</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+                    /.nav-second-level
+                </li> -->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

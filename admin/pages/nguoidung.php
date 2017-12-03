@@ -8,6 +8,10 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
+    if( $_SESSION['quyen'] != 1)
+      {
+        header("location:info.php");
+      }
       $nguoidung = $exp->fetch_all("select * from nguoidung");
      ?>
     <link rel="stylesheet" href="../dist/css/nguoidung.css">
@@ -232,6 +236,24 @@ session_start();
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                          <label  class="col-sm-4 control-label">Tài khoản</label>
+                                          <div class="col-sm-8">
+                                            <input id='sua_username' name='username' class="form-control"   required=""
+                                            oninvalid="this.setCustomValidity('Chưa nhập tài khoản')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label  class="col-sm-4 control-label">Mật khẩu</label>
+                                          <div class="col-sm-8">
+                                            <input id='sua_password' name='password' class="form-control"  required=""
+                                            oninvalid="this.setCustomValidity('Chưa nhập mật khẩu')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
                                       </div>
 
                                     </div>
@@ -358,7 +380,7 @@ session_start();
                                      }
                                     ?>
                                  </td>
-                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/suanhanvien.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
+                                 <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/xoanguoidung.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
                                  <td class="center">
                                    <i  class="fa fa-pencil fa-fw"></i>
                                    <a class='edit' data-toggle="modal" data-target="#suanguoidung"  href="#"
@@ -369,6 +391,9 @@ session_start();
                                       data-sdt=<?php echo $value['sdt']; ?>
                                       data-cmnd=<?php echo $value['cmnd']; ?>
                                       data-quyen=<?php echo $value['quyen']; ?>
+                                      <?php $account = $exp->fetch_one(" select * from taikhoan where ma_nv={$value['id']} "); ?>
+                                      data-username="<?php echo $account['username']; ?>"
+                                      data-password="<?php echo $account['password']; ?>"
                                     >Sửa</a>
                                  </td>
                              </tr>
@@ -429,14 +454,16 @@ session_start();
             $( "#sua_ngay_sinh" ).datepicker({dateFormat: "yy-mm-dd"});
           })
 
-          $(document).ready(function() {
-            $('.edit').click(function() {
+          $('body').delegate('.edit','click',function() {
+
               $('#sua_id').val($(this).data('id'))
               $('#sua_ten_nv').val($(this).data('ten_nv'))
               $('#sua_ngay_sinh').val($(this).data('ngay_sinh'))
               $('#sua_dia_chi').val($(this).data('dia_chi'))
               $('#sua_sdt').val($(this).data('sdt'))
               $('#sua_cmnd').val($(this).data('cmnd'))
+              $('#sua_username').val($(this).data('username'))
+              $('#sua_password').val($(this).data('password'))
               let quyen = $(this).data('quyen')
 
               switch(quyen) {
@@ -450,7 +477,7 @@ session_start();
                   $('#optionsRadios3').attr('checked',"")
                   break
               }
-            })
+
           })
 
           $('#suanguoidung').on('hidden.bs.modal', function () {

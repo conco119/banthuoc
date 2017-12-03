@@ -8,6 +8,10 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
+    if( $_SESSION['quyen'] == 3)
+      {
+        header("location:info.php");
+      }
       $loaithuoc = $exp->fetch_all("select * from loaithuoc");
      ?>
     <link rel="stylesheet" href="../dist/css/loaithuoc.css">

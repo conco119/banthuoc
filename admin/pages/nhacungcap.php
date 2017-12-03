@@ -8,6 +8,11 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
+      if( $_SESSION['quyen'] != 1)
+        {
+          header("location:info.php");
+        }
+
       $ncc = $exp->fetch_all("select * from nhacungcap");
      ?>
     <link rel="stylesheet" href="../dist/css/nhacungcap.css">

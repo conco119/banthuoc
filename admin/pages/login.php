@@ -19,18 +19,18 @@
                         <form method='post' action='../api/login.php'>
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Tài khoản" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Tài khoản" name="username"  autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Mật khẩu" name="password" type="password" value="">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Ghi nhớ
-                                    </label>
+                                <?php if(isset($_GET['wrong'])): ?>
+                                <div class="alert alert-danger">
+                                  Tài khoản hoặc mật khẩu không chính xác !
                                 </div>
+                              <?php endif ?>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Đăng nhập</a>
+                                <button name='submit' type='submit' class="btn btn-lg btn-success btn-block">Đăng nhập</button>
                             </fieldset>
                         </form>
                     </div>

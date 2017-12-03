@@ -10,7 +10,11 @@
     $data['sdt'] = $_POST['sdt'];
     $data['cmnd'] = $_POST['cmnd'];
     $data['quyen'] = $_POST['quyen'];
-    $exp->insert('nguoidung',$data);
+    $idtaikhoan = $exp->insert('nguoidung',$data);
+    $account['username'] = $idtaikhoan;
+    $account['password'] = $idtaikhoan;
+    $account['ma_nv'] = $idtaikhoan;
+    $exp->insert('taikhoan',$account);
     $_SESSION["status"] = "success";
     header("location:../pages/nguoidung.php");
     var_dump($_SESSION);

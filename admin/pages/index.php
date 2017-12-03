@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+<?php
+ob_start();
+session_start();
+ ?>
 <html lang="en">
 
 <head>
     <?php require('../common/head.php'); ?>
+    <?php $sothuoc = $exp->count_rows("select * from thuoc"); ?>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Thống kê</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -26,17 +31,17 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
+                                    <i class="fa fa-medkit fa-5x" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
+                                    <div class="huge"><?php echo $sothuoc; ?></div>
+                                    <div>Tổng số thuốc</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="danhmuc.php">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Chi tiết</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

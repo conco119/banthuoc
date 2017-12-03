@@ -7,6 +7,10 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
+    if( $_SESSION['quyen'] == 3 )
+      {
+        header("location:info.php");
+      }
       $loaithuoc = $exp->fetch_all("select * from loaithuoc");
       $thuoc = $exp->fetch_all("select * from thuoc");
      ?>
@@ -371,6 +375,7 @@ session_start();
                                  <th>Giá nhập</th>
                                  <th>Ngày sản xuất</th>
                                  <th>Hạn sử dụng</th>
+                                 <th>Theo đơn</th>
                                  <th>Tồn kho</th>
                                  <th>Xóa</th>
                                  <th>Sửa</th>
@@ -392,12 +397,20 @@ session_start();
                                  <td><?php echo $value['gia_von']; ?></td>
                                  <td><?php echo $value['nsx']; ?></td>
                                  <td><?php echo $value['hsd']; ?></td>
+                                 <td>
+                                   <?php
+                                      if( $value['theo_don'] ==1 )
+                                        echo "<i style='color:green' class='fa fa-check' aria-hidden='true'></i>";
+                                      else
+                                        echo "<i style='color:red' class='fa fa-times' aria-hidden='true'></i>";
+                                     ?>
+                                 </td>
                                  <td><?php echo $value['ton_kho']; ?></td>
                                  <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/xoathuoc.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
                                  <td class="center">
                                    <i  class="fa fa-pencil fa-fw"></i>
                                    <a class='edit' data-toggle="modal" data-target="#suathuoc"  href="#"
-                                      data-ten_thuoc=<?php echo $value['ten_thuoc']; ?>
+                                      data-ten_thuoc="<?php echo $value['ten_thuoc']; ?>"
                                       data-id=<?php echo $value['id']; ?>
                                       data-anh="data:image/jpeg;base64,<?php echo base64_encode($value['anh']); ?>"
                                       data-ma_loai_thuoc=<?php echo $value['ma_loai_thuoc']; ?>
