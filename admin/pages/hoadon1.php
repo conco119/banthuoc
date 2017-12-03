@@ -8,7 +8,7 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
-      $phieunhap = $exp->fetch_all("select * from phieu_nhap");
+      $hoadon = $exp->fetch_all("select * from hoadon");
      ?>
     <link rel="stylesheet" href="../dist/css/phieunhap.css">
     <link href="../../library/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
@@ -16,19 +16,19 @@ session_start();
 <body>
 
     <div id="wrapper">
-      <?php foreach($phieunhap as $key => $value): ?>
+      <?php foreach($hoadon as $key => $value): ?>
       <!-- Modal them loai thuoc -->
       <div class="modal fade" id="<?php echo "a".$value['id']; ?>" role="dialog">
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form method="post" action='../api/themloaithuoc.php' class="form-horizontal"   >
+          <form method="post"  class="form-horizontal"   >
           <div class="modal-content ">
             <div class="modal-header">
               <div class="panel panel-green">
                   <div class="panel-heading">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Chi tiết phiếu nhập</h4>
+                    <h4 class="modal-title">Chi tiết hóa đơn</h4>
                   </div>
               </div>
             </div>
@@ -54,8 +54,8 @@ session_start();
                                                  </tr>
                                              </thead>
                                              <tbody>
-                                               <?php $ctphieunhap = $exp->fetch_all(" select * from ctphieunhap where ma_pn={$value["id"]}"); ?>
-                                               <?php foreach($ctphieunhap as $key => $value): ?>
+                                               <?php $cthoadon = $exp->fetch_all(" select * from cthoadon where ma_hd={$value["id"]}"); ?>
+                                               <?php foreach($cthoadon as $key => $value): ?>
                                                  <tr class="odd gradeX" align="center">
                                                      <td><?php echo $value['ma_thuoc']; ?></td>
                                                      <td><?php echo $value['ten_thuoc']; ?></td>
@@ -82,18 +82,18 @@ session_start();
 
     <?php endforeach; ?>
 
-    <!-- Modal phieu nhap  -->
-    <div class="modal fade" id="suaphieunhap" role="dialog">
+    <!-- Modal hoa don  -->
+    <div class="modal fade" id="suahoadon" role="dialog">
       <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
-        <form method="post" action='../api/suaphieunhap.php' class="form-horizontal"   >
+        <form method="post" action='../api/suahoadon.php' class="form-horizontal"   >
         <div class="modal-content ">
           <div class="modal-header">
             <div class="panel panel-green">
                 <div class="panel-heading">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Sửa phiếu nhập</h4>
+                  <h4 class="modal-title">Sửa hóa đơn</h4>
                 </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ session_start();
 
                                                   <label >
                                                     <input id='thanhtoan' name="thanh_toan" type="checkbox">
-                                                    <input type="hidden" id='ma_pn' name="ma_pn" value="">
+                                                    <input type="hidden" id='ma_hd' name="ma_hd" value="">
                                                   </label>
 
                                           </div>
@@ -148,7 +148,7 @@ session_start();
           <div class="grey">
             <div class="row header">
               <div class="col-md-6">
-                <h2 class='title'>Phiếu nhập hàng</h2>
+                <h2 class='title'>Hóa đơn</h2>
                 <?php if(isset($_SESSION["status"])) {  ?>
 
                  <?php if($_SESSION['status'] == "success") { ?>
@@ -207,10 +207,10 @@ session_start();
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                          <thead>
                              <tr align="center">
-                                 <th> <strong>Mã phiếu nhập</strong> </th>
+                                 <th> <strong>Mã hóa đơn</strong> </th>
                                  <td> <strong>Thời gian</strong> </td>
-                                 <td> <strong>Nhà cung cấp</strong> </td>
                                  <td> <strong>Người nhập</strong> </td>
+                                 <td> <strong>Khách hàng</strong> </td>
                                  <td> <strong>Thanh toán</strong> </td>
                                  <td> <strong>Tổng tiền</strong> </td>
                                  <td> <strong>Chi tiết</strong> </td>
@@ -218,17 +218,17 @@ session_start();
                              </tr>
                          </thead>
                          <tbody>
-                           <?php foreach($phieunhap as $key => $value): ?>
+                           <?php foreach($hoadon as $key => $value): ?>
                              <tr class="odd gradeX" align="center">
                                  <td><?php echo $value['id']; ?></td>
                                  <td><?php echo $value['time']; ?></td>
                                  <td>
-                                   <?php $ncc = $exp->fetch_one(" select * from nhacungcap where id={$value["ma_ncc"]} "); ?>
-                                   <?php echo $ncc['ten_ncc']; ?>
-                                 </td>
-                                 <td>
                                    <?php $nguoidung = $exp->fetch_one(" select * from nguoidung where id={$value["ma_nv"]} "); ?>
                                    <?php echo $nguoidung['ten_nv']; ?>
+                                 </td>
+                                 <td>
+                                   <?php $khachhang = $exp->fetch_one(" select * from khach_hang where id={$value["ma_kh"]} "); ?>
+                                   <?php echo $khachhang['ten'] ? $khachhang['ten'] : "Khách lẻ" ?>
                                  </td>
                                  <td>
                                    <?php
@@ -248,7 +248,7 @@ session_start();
                                  </td>
                                  <td class="center">
                                    <i  class="fa fa-pencil fa-fw"></i>
-                                   <a class='edit_thanhtoan' data-toggle="modal" data-target="#suaphieunhap"  href="#"
+                                   <a class='edit_thanhtoan' data-toggle="modal" data-target="#suahoadon"  href="#"
                                     data-id="<?php echo $value['id']; ?>"
                                     data-thanh_toan="<?php echo $value['thanh_toan']; ?>"
                                     >Sửa</a>
@@ -310,7 +310,7 @@ session_start();
             else {
               $('#thanhtoan').removeAttr("checked")
             }
-            $('#ma_pn').val(id)
+            $('#ma_ph').val(id)
           });
 
 

@@ -16,7 +16,7 @@
                         <h3 class="panel-title">Đăng nhập hệ thống</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form method='post' action='../api/login.php'>
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Tài khoản" name="email" type="email" autofocus>

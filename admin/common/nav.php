@@ -13,7 +13,9 @@
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
 
-
+                <li>
+                    <a href="hoadon.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Bán thuốc</a>
+                </li>
                 <li><a href="nguoidung.php"><i class="fa fa-user fa-fw"></i>Quản lý người dùng</a>
                 </li>
                 <li><a href="#"><i class="fa fa-user fa-fw"></i>Thông tin người dùng</a>
@@ -87,8 +89,9 @@
                             <a href="phieunhaphang.php">Phiếu nhập hàng</a>
                         </li>
                         <li>
-                            <a href="hoadon.php">Hóa đơn</a>
+                            <a href="hoadon1.php">Hóa đơn</a>
                         </li>
+
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

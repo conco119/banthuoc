@@ -327,14 +327,14 @@ session_start();
                          <thead>
                              <tr align="center">
                                  <th>Mã nhân viên</th>
-                                 <td>Tên nhân viên</td>
-                                 <td>Ngày sinh</td>
-                                 <td>Địa chỉ</td>
-                                 <td>Số điện thoại</td>
-                                 <td>Số chứng minh nhân dân</td>
-                                 <td>Chức vụ</td>
-                                 <td>Xóa</td>
-                                 <td>Sửa</td>
+                                 <td> <strong>Tên nhân viên</strong> </td>
+                                 <td> <strong>Ngày sinh</strong> </td>
+                                 <td> <strong>Địa chỉ</strong> </td>
+                                 <td> <strong>Số điện thoại</strong> </td>
+                                 <td> <strong>Số chứng minh nhân dân</strong> </td>
+                                 <td> <strong>Chức vụ</strong> </td>
+                                 <td> <strong>Xóa</strong> </td>
+                                 <td> <strong>Sửa</strong> </td>
                              </tr>
                          </thead>
                          <tbody id="data">

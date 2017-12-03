@@ -47,7 +47,7 @@ session_start();
                                           <div class="form-group">
                                               <label class="col-sm-4 control-label">Loại khách</label>
                                               <label  class="radio-inline">
-                                                  <input id='canhan' type="radio" name="loai_khach"  value="0">Cá nhân
+                                                  <input id='canhan' type="radio" name="loai_khach"  value="0" checked>Cá nhân
                                               </label>
                                               <label  class="radio-inline">
                                                   <input id='tochuc' type="radio" name="loai_khach"  value="1">Tổ chức

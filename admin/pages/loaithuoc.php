@@ -204,9 +204,9 @@ session_start();
                          <thead>
                              <tr align="center">
                                  <th>Mã loại thuốc</th>
-                                 <td>Tên loại thuốc</td>
-                                 <td>Xóa</td>
-                                 <td>Sửa</td>
+                                 <td> <strong>Tên loại thuốc</strong> </td>
+                                 <td> <strong>Xóa</strong> </td>
+                                 <td> <strong>Sửa</strong> </td>
                              </tr>
                          </thead>
                          <tbody id="data">

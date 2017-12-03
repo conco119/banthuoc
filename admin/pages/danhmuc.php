@@ -369,6 +369,8 @@ session_start();
                                  <th>Loại thuốc</th>
                                  <th>Giá bán</th>
                                  <th>Giá nhập</th>
+                                 <th>Ngày sản xuất</th>
+                                 <th>Hạn sử dụng</th>
                                  <th>Tồn kho</th>
                                  <th>Xóa</th>
                                  <th>Sửa</th>
@@ -388,6 +390,8 @@ session_start();
                                  ?></td>
                                  <td><?php echo $value['gia_ban']; ?></td>
                                  <td><?php echo $value['gia_von']; ?></td>
+                                 <td><?php echo $value['nsx']; ?></td>
+                                 <td><?php echo $value['hsd']; ?></td>
                                  <td><?php echo $value['ton_kho']; ?></td>
                                  <td class="center"><i style='color:red;' class="fa fa-trash-o  fa-fw"></i><a href="../api/xoathuoc.php?id=<?php echo $value['id']; ?>" class='delete' onclick="return confirm('Bạn có chắc không?')"  style='color:red;' href="#"> Xóa</a></td>
                                  <td class="center">

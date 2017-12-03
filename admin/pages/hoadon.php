@@ -8,9 +8,9 @@ session_start();
 <head>
     <?php require('../common/head.php'); ?>
     <?php
-      $loaithuoc = $exp->fetch_all("select * from loaithuoc");
+
       $thuoc = $exp->fetch_all("select * from thuoc");
-      $nhacungcap = $exp->fetch_all("select * from nhacungcap");
+      $khachhang = $exp->fetch_all(" select * from khach_hang");
      ?>
     <link rel="stylesheet" href="../dist/css/hoadon.css">
     <link href="../../library/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
@@ -92,7 +92,70 @@ session_start();
 
         </div>
       </div>
+      <!-- modal khachhang -->
+      <div class="modal fade" id="khachhang" role="dialog">
+        <div class="modal-dialog modal-lg">
 
+          <!-- Modal content-->
+          <form method="post" action='../api/themloaithuoc.php' class="form-horizontal" id='themthuocform'  >
+          <div class="modal-content ">
+            <div class="modal-header">
+              <div class="panel panel-green">
+                  <div class="panel-heading">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Chọn khách hàng</h4>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <div class="col-md-12" id="data">
+                  <table class="table table-striped table-bordered table-hover" id="dataTables-khachhang">
+                           <thead>
+                               <tr align="center">
+                                   <th>Mã khách hàng</th>
+                                   <th>Tên khách hàng</th>
+                                   <td> <strong>Số điện thoại</strong> </td>
+                                   <td> <strong>Loại khách</strong> </td>
+                                   <td> <strong>Email</strong> </td>
+                                   <td> <strong>Địa chỉ</strong> </td>
+                                   <td> <strong>Chọn</strong> </td>
+                               </tr>
+                           </thead>
+                           <tbody id="data">
+                             <?php foreach($khachhang as $key => $value): ?>
+                               <tr class="odd gradeX" align="center">
+                                   <td><?php echo $value['id']; ?></td>
+                                   <td><?php echo $value['ten']; ?></td>
+                                   <td><?php echo $value['sdt']; ?></td>
+                                   <td>
+                                     <?php echo $value['loai_khach'] == 0 ? "Cá nhân" : "Tổ chức" ?>
+                                   </td>
+                                   <td><?php echo $value['email']; ?></td>
+                                   <td><?php echo $value['dia_chi']; ?></td>
+                                   <td>
+                                     <button type="button" class='chonkhachhang btn btn-success btn-sm'
+                                        data-id="<?php echo $value['id']; ?>"
+                                        data-ten="<?php echo $value['ten']; ?>"
+                                     >
+                                       Chọn</button>
+                                   </td>
+
+                               </tr>
+                            <?php endforeach; ?>
+                           </tbody>
+                       </table>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          </form>
+
+        </div>
+      </div>
 
         <!-- Navigation -->
         <?php require('../common/nav.php'); ?>
@@ -157,12 +220,12 @@ session_start();
               </div>
               <div class="col-md-6 right">
                 <button class='btn btn-default' type="button" name="button" data-toggle="modal" data-target="#myModal"><i class='glyphicon glyphicon-plus'></i>Chọn thuốc</button>
-                <button class='btn btn-default' type="button" name="button"><i class='	glyphicon glyphicon-export'></i> Xuất file</button>
+                <!-- <button class='btn btn-default' type="button" name="button"><i class='	glyphicon glyphicon-export'></i> Xuất file</button> -->
 
 
               </div>
             </div>
-          <form method='post' action='../api/nhaphang.php'>
+          <form method='post' action='../api/hoadon.php'>
             <div class="row">
               <div class="col-md-12" id="data">
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -177,24 +240,6 @@ session_start();
                              </tr>
                          </thead>
                          <tbody id="mathang">
-                           <!-- <tr id=${id} class="odd gradeX" align="center">
-                             <td class='trung' >12222</td>
-                             <td>Beo</td>
-                             <td>
-                               <input class='tinhtien' type="number" name="" value="2">
-                             </td>
-                             <td>
-                               <input class='tinhtien' type="number" name="" value="3232">
-                             </td>
-                             <td>
-                               <input type="text" name="" value="0" disabled>
-                             </td>
-
-                             <td>
-                               <button  data-id=${id} class='xoamathang btn btn-danger btn-small'>Xóa</button>
-                             </td>
-
-                           </tr> -->
                          </tbody>
                      </table>
               </div>
@@ -218,6 +263,22 @@ session_start();
                       <input type="date" name="ngay_nhap" >
                     </div>
                   </div>
+
+
+
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="pwd">  </i>Khách hàng: </label>
+                      <div class="col-sm-10">
+                        <div class="form-inline">
+                          <input id='tenkhachhang' type="text" class='form-control' name="" readonly>
+                          <button id='congkhachhang' class='btn btn-default btn-xs' type="button" name="button" data-toggle="modal" data-target="#khachhang"><i class='glyphicon glyphicon-plus'></i></button>
+
+                          <input id='makhachhang' type="hidden" name="ma_kh">
+                        </div>
+
+                      </div>
+                    </div>
+
 
                 <div class="form-group">
                   <label class="control-label col-sm-2" for="pwd">  </i>Khách hàng cần trả:</label>
@@ -284,16 +345,36 @@ session_start();
                    },
                 }
         });
+        $('#dataTables-khachhang').DataTable({
+                responsive: true,
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ mỗi trang",
+                    "zeroRecords": "Không có dữ liệu ",
+                    "info": "Trang  _PAGE_ trên _PAGES_",
+                    "infoEmpty": "Không có dữ liệu phù hợp",
+                    "infoFiltered": "(lọc từ _MAX_ bản ghi)",
+                    "search": "Tìm kiếm",
+                    "paginate": {
+                       "first":      "Đầu",
+                       "last":       "Cuối",
+                       "next":       "Trước",
+                       "previous":   "Sau"
+                   },
+                }
+        });
     });
     </script>
     <script type="text/javascript">
 
 
-
+          //chọn khách hàng
           $(document).ready(function() {
-            $('.edit').click(function() {
-              $('#suaten').val($(this).data('ten'))
-              $('#sua_id').val($(this).data('id'))
+            $('.chonkhachhang').click(function() {
+              let id = $(this).data('id')
+              let ten = $(this).data('ten')
+              $('#tenkhachhang').val(ten)
+              $('#makhachhang').val(id)
+              $('#khachhang').modal('toggle');
             })
           })
 

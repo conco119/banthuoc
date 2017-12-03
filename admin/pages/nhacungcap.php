@@ -258,12 +258,12 @@ session_start();
                          <thead>
                              <tr align="center">
                                  <th>Mã nhà cung cấp</th>
-                                 <td>Tên nhà cung cấp</td>
-                                 <td>Số điện thoại</td>
-                                 <td>Email</td>
-                                 <td>Địa chỉ</td>
-                                 <td>Xóa</td>
-                                 <td>Sửa</td>
+                                 <td>  <strong>Tên nhà cung cấp</strong> </td>
+                                 <td> <strong>Số điện thoại</strong> </td>
+                                 <td> <strong>Email</strong> </td>
+                                 <td> <strong>Địa chỉ</strong> </td>
+                                 <td> <strong>Xóa</strong> </td>
+                                 <td> <strong>Sửa</strong> </td>
                              </tr>
                          </thead>
                          <tbody id="data">
