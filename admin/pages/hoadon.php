@@ -45,6 +45,7 @@ session_start();
                                    <th>Mã thuốc</th>
                                    <td> <strong>Tên thuốc</strong> </td>
                                    <td> <strong>Tồn kho</strong> </td>
+                                   <td> <strong>Theo đơn</strong> </td>
                                    <td> <strong>Chọn</strong> </td>
                                </tr>
                            </thead>
@@ -57,6 +58,16 @@ session_start();
                                    <td><?php echo $value['id']; ?></td>
                                    <td><?php echo $value['ten_thuoc']; ?></td>
                                    <td><?php echo $value['ton_kho']; ?></td>
+                                   <td>
+                                     <?php
+                                        if( $value['theo_don'] ==1 )
+                                          echo "<i style='color:green' class='fa fa-check' aria-hidden='true'></i>";
+                                        else
+                                          echo "<i style='color:red' class='fa fa-times' aria-hidden='true'></i>";
+                                       ?>
+
+
+                                   </td>
                                    <td>
                                      <button type="button" class=' select btn btn-success btn-sm' name="button"
                                         data-id=<?php echo $value['id']; ?>
@@ -92,7 +103,7 @@ session_start();
           <div class="grey">
             <div class="row header">
               <div class="col-md-6">
-                <h2 class='title'>Bán hàng</h2>
+                <h2 class='title'>Bán thuốc</h2>
                 <?php if(isset($_SESSION["status"])) {  ?>
 
                  <?php if($_SESSION['status'] == "success") { ?>
@@ -216,7 +227,15 @@ session_start();
                   </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd"> Thanh toán</label>
+                    <div class="checkbox col-sm-10">
+                        <label>
+                            <input type="checkbox" name='thanh_toan'>
+                        </label>
+                    </div>
 
+                </div>
 
 
                 <div class="form-group">
@@ -279,9 +298,9 @@ session_start();
           })
 
           // thêm mặt hàng vào hóa đơn
-          $(document).ready(function() {
 
-            $('.select').click(function() {
+
+            $('tbody').delegate('.select','click',function() {
               let id=$(this).data('id')
               let ten_thuoc=$(this).data('ten_thuoc')
               let gia_ban=$(this).data('gia_ban')
@@ -326,7 +345,6 @@ session_start();
 
               disp( $( ".trung" ).toArray().reverse() );
             })
-          })
 
 
 

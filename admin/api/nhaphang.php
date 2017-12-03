@@ -22,7 +22,12 @@ if(isset($_POST['submit'])) {
   $data['ngay_nhap'] = $_POST['ngay_nhap'];
   $data['ghi_chu'] = $_POST['ghi_chu'];
   $data['tong_tien'] = $_POST['tong_tien'];
+  if(isset($_POST['thanh_toan'])) {
+    $data['thanh_toan'] = 1;
 
+  }else {
+    $data['thanh_toan'] = 0;
+  }
   if( $id = $exp->insert('phieu_nhap', $data) ) {
     foreach($_POST as $key => $value) {
       if(is_numeric($key)) {

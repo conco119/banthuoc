@@ -156,6 +156,7 @@ session_start();
                                  <td> <strong>Thời gian</strong> </td>
                                  <td> <strong>Nhà cung cấp</strong> </td>
                                  <td> <strong>Người nhập</strong> </td>
+                                 <td> <strong>Thanh toán</strong> </td>
                                  <td> <strong>Tổng tiền</strong> </td>
                                  <td> <strong>Chi tiết</strong> </td>
                              </tr>
@@ -172,6 +173,14 @@ session_start();
                                  <td>
                                    <?php $nguoidung = $exp->fetch_one(" select * from nguoidung where id={$value["ma_nv"]} "); ?>
                                    <?php echo $nguoidung['ten_nv']; ?>
+                                 </td>
+                                 <td>
+                                   <?php
+                                      if( $value['thanh_toan'] ==1 )
+                                        echo "<i style='color:green' class='fa fa-check' aria-hidden='true'></i>";
+                                      else
+                                        echo "<i style='color:red' class='fa fa-times' aria-hidden='true'></i>";
+                                     ?>
                                  </td>
                                  <td>
                                    <?php echo $value['tong_tien']; ?>

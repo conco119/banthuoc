@@ -227,6 +227,15 @@ session_start();
                   </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd"> Thanh toán</label>
+                    <div class="checkbox col-sm-10">
+                        <label>
+                            <input type="checkbox" name='thanh_toan'>
+                        </label>
+                    </div>
+
+                </div>
 
 
 

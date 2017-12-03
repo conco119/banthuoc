@@ -15,7 +15,8 @@
     $data['gia_ban'] = $_POST['gia_ban'];
     $data['gia_von'] = $_POST['gia_von'];
     $data['ghi_chu'] = $_POST['note'];
-    $data['giam_gia'] = 0;
+    $data['nsx'] = $_POST['nsx'];
+    $data['hsd'] = $_POST['hsd'];
     $data['ton_kho'] = 0;
     $data['ma_trang_thai'] = 1;
     $id = $exp->insert('thuoc', $data);

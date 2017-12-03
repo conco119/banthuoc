@@ -18,6 +18,8 @@ if(isset($_POST['submit'])) {
   $data['gia_ban'] = $_POST['gia_ban'];
   $data['gia_von'] = $_POST['gia_von'];
   $data['ghi_chu'] = $_POST['note'];
+  $data['nsx'] = $_POST['nsx'];
+  $data['hsd'] = $_POST['hsd'];
   $exp->update('thuoc', $data,"id={$_POST['id']}");
 
   $connect = mysqli_connect($tenserver, $tentaikhoan, $matkhau, $tencsdl);

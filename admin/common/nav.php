@@ -48,7 +48,7 @@
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Tổng quan</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Hàng hóa<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-medkit" aria-hidden="true"></i></i> Thuốc<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="danhmuc.php">Danh mục</a>
@@ -66,7 +66,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Đối tác<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users" aria-hidden="true"></i></i> Đối tác<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="khachhang.php">Khách hàng</a>
@@ -78,7 +78,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Giao dịch<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Giao dịch<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="nhaphang.php">Nhập hàng</a>

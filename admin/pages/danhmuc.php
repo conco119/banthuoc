@@ -88,6 +88,24 @@ session_start();
                                           </div>
                                         </div>
                                         <div class="form-group">
+                                          <label for="inputPassword3" class="col-sm-4 control-label">Ngày sản xuất</label>
+                                          <div class="col-sm-8">
+                                            <input name='nsx' required="" type="date" class="form-control"  placeholder="Ngày sản xuất"
+                                            oninvalid="this.setCustomValidity('Chưa nhập ngày sản xuất')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="inputPassword3" class="col-sm-4 control-label">Hạn sử dụng</label>
+                                          <div class="col-sm-8">
+                                            <input name='hsd' required="" type="date" class="form-control"  placeholder="Hạn sử dụng"
+                                            oninvalid="this.setCustomValidity('Chưa nhập hạn sử dụng')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-4 control-label">Thuốc theo đơn</label>
                                             <div class="checkbox col-sm-8">
 
@@ -200,11 +218,29 @@ session_start();
                                           </div>
                                         </div>
                                         <div class="form-group">
+                                          <label for="inputPassword3" class="col-sm-4 control-label">Ngày sản xuất</label>
+                                          <div class="col-sm-8">
+                                            <input name='nsx' required="" type="date" class="form-control"  placeholder="Ngày sản xuất" id='sua_nsx'
+                                            oninvalid="this.setCustomValidity('Chưa nhập ngày sản xuất')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="inputPassword3" class="col-sm-4 control-label">Hạn sử dụng</label>
+                                          <div class="col-sm-8">
+                                            <input name='hsd' required="" type="date" class="form-control"  placeholder="Hạn sử dụng" id='sua_hsd'
+                                            oninvalid="this.setCustomValidity('Chưa nhập hạn sử dụng')"
+                                            oninput="setCustomValidity('')"
+                                            >
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-4 control-label">Thuốc theo đơn</label>
                                             <div class="checkbox col-sm-8">
 
                                                     <label >
-                                                      <input id='sua_theo_don' name="theo_don" type="checkbox"  >
+                                                      <input style='color:green' id='sua_theo_don' name="theo_don" type="checkbox"  >
                                                     </label>
 
                                             </div>
@@ -316,7 +352,6 @@ session_start();
                     <li><input id='trangthai' type="checkbox" name="" value="">  Trạng thái</li>
                     <li><input id="tonkho" type="checkbox" name="" value="">  Tồn kho</li>
                     <li><input id="gianhap" type="checkbox" name="" value="">  Giá nhập</li>
-                    <li><input id="giaban" type="checkbox" name="" value="">  Giá bán</li>
                     <li><input id="giamgia" type="checkbox" name="" value="">  Giảm giá</li>
                   </ul>
                 </div>
@@ -329,7 +364,7 @@ session_start();
                          <thead>
                              <tr align="center">
                                  <th>Mã thuốc</th>
-                                 <td>Ảnh</td>
+                                 <td> <strong>Ảnh</strong> </td>
                                  <th>Tên thuốc</th>
                                  <th>Loại thuốc</th>
                                  <th>Giá bán</th>
@@ -366,6 +401,8 @@ session_start();
                                       data-gia_von=<?php echo $value['gia_von']; ?>
                                       data-ghi_chu="<?php echo $value['ghi_chu']; ?>"
                                       data-theo_don=<?php echo $value['theo_don']; ?>
+                                      data-nsx="<?php echo $value['nsx']; ?>"
+                                      data-hsd="<?php echo $value['hsd']; ?>"
                                     >Sửa</a>
                                  </td>
                              </tr>
@@ -446,34 +483,40 @@ session_start();
                 $('#sua_anh').attr("type","text");
                 $('#sua_anh').attr("type","file");
             })
-            //click sua
-            $('a.edit').click(function() {
-              let id = $(this).data('id')
-              let ten_thuoc = $(this).data('ten_thuoc')
-              let sua_ma_loai_thuoc = $(this).data('ma_loai_thuoc')
-              let anh = $(this).data('anh')
-              let sua_gia_ban = $(this).data('gia_ban')
-              let sua_gia_von = $(this).data('gia_von')
-              let select = $(`#sua_ma_loai_thuoc option[value=${sua_ma_loai_thuoc}]`)
-              let sua_theo_don = $(this).data('theo_don')
-              let sua_ghi_chu = $(this).data('ghi_chu')
-               if(sua_theo_don == 1) {
-                 $('#sua_theo_don').attr("checked","")
-               }else {
-                 $('#sua_theo_don').removeAttr("checked")
-               }
-
-               $('#sua_ghi_chu').val(sua_ghi_chu)
-               //anh
-              $('#sua_avatar').attr('src',anh)
-              $('#sua_ma_thuoc').val(id)
-              $('#sua_ten_thuoc').val(ten_thuoc)
-              $('#sua_gia_ban').val(sua_gia_ban)
-              $('#sua_gia_von').val(sua_gia_von)
-              $(select).attr('selected',"")
-            })
-
           })
+
+          $('body').delegate('a.edit','click',function() {
+            let id = $(this).data('id')
+            let ten_thuoc = $(this).data('ten_thuoc')
+            let sua_ma_loai_thuoc = $(this).data('ma_loai_thuoc')
+            let anh = $(this).data('anh')
+            let sua_gia_ban = $(this).data('gia_ban')
+            let sua_gia_von = $(this).data('gia_von')
+            let select = $(`#sua_ma_loai_thuoc option[value=${sua_ma_loai_thuoc}]`)
+            let sua_theo_don = $(this).data('theo_don')
+            let sua_ghi_chu = $(this).data('ghi_chu')
+            let nsx = $(this).data('nsx')
+            let hsd = $(this).data('hsd')
+
+             if(sua_theo_don == 1) {
+               $('#sua_theo_don').attr("checked","")
+             }else {
+               $('#sua_theo_don').removeAttr("checked")
+             }
+
+             $('#sua_ghi_chu').val(sua_ghi_chu)
+             //anh
+            $('#sua_avatar').attr('src',anh)
+            $('#sua_ma_thuoc').val(id)
+            $('#sua_ten_thuoc').val(ten_thuoc)
+            $('#sua_gia_ban').val(sua_gia_ban)
+            $('#sua_gia_von').val(sua_gia_von)
+            $('#sua_nsx').val(nsx)
+            $('#sua_hsd').val(hsd)
+            $(select).attr('selected',"")
+          })
+
+
           //sua anh
           $(document).ready(function() {
             //chon anh
