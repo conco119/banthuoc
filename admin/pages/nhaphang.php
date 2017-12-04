@@ -192,8 +192,8 @@ session_start();
                 <div class="form-group">
                   <label class="control-label col-sm-2" for="email"><i class="fa fa-user" aria-hidden="true"></i> Tên nhân viên:</label>
                   <div class="col-sm-10">
-                    <p class='reset'>Nguyễn Hải Duy</p>
-                    <input type="hidden" name="manv" value="1">
+                    <p class='reset'><?php echo $_SESSION['ten_nv']; ?></p>
+                    <input type="hidden" name="manv" value="<?php echo $_SESSION['ma_nv']; ?>">
                   </div>
                 </div>
 

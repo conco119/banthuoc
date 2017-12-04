@@ -310,7 +310,7 @@ session_start();
             else {
               $('#thanhtoan').removeAttr("checked")
             }
-            $('#ma_ph').val(id)
+            $('#ma_hd').val(id)
           });
 
 
